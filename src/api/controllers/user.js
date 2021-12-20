@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 var randtoken = require("rand-token");
-const valiId = require("valid-objectid");
 //const btoa = require("btoa");
 
 const User = require("../models/user");
