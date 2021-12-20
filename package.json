@@ -1,0 +1,19 @@
+{
+  "name": "indeed-api",
+  "version": "1.0.0",
+  "description": "API for the team",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vladi97/indeed-api.git"
+  },
+  "author": "vmatarrita",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vladi97/indeed-api/issues"
+  },
+  "homepage": "https://github.com/Vladi97/indeed-api#readme"
+}
