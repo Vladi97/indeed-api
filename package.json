@@ -15,5 +15,16 @@
   "bugs": {
     "url": "https://github.com/Vladi97/indeed-api/issues"
   },
-  "homepage": "https://github.com/Vladi97/indeed-api#readme"
+  "homepage": "https://github.com/Vladi97/indeed-api#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.1",
+    "btoa": "^1.2.1",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
+    "rand-token": "^1.0.1"
+  }
 }
