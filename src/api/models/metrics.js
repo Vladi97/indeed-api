@@ -15,4 +15,4 @@ const metricsSchema = mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "users", required: true },
 });
 
-module.exports = mongoose.model("metrics", metricsSchema);
+module.exports = mongoose.model("metric", metricsSchema);

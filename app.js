@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
-const bodyparser = require("body-parser");
+const bodyParser = require("body-parser");
 const db = require("./src/api/utils/db.js");
 
 const userRoutes = require("./src/api/routes/user");
@@ -11,8 +11,10 @@ db.connect();
 
 app.use(morgan("dev"));
 
-app.use(bodyparser.urlencoded({ extended: false }));
-app.use(bodyparser.json());
+//app.use(express.json());
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -27,8 +29,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/metrics", metricsRoutes);
-app.use("/user", userRoutes);
+app.use("/api/metrics", metricsRoutes);
+app.use("/api/user", userRoutes);
 
 app.use((re, res, next) => {
   const error = new Error("Not Found");
