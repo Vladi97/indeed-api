@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 function connect() {
+  //const mongoUri =
   return new Promise((resolve, reject) => {
     mongoose
       .connect(process.env.MONGO_URI_CONNECTION, {

@@ -12,7 +12,7 @@ const metricsSchema = mongoose.Schema({
   availableTime: { type: String, required: true },
   verifiedTickets: { type: String, required: true },
   rejectedTickets: { type: String, required: true },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "users", required: true },
+  user: { type: String, required: true },
 });
 
 module.exports = mongoose.model("metric", metricsSchema);

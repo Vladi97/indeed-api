@@ -109,7 +109,7 @@ exports.get_metric = (req, res, next) => {
  * If the information is valid then it will update the group
  */
 exports.update_metric = (req, res, next) => {
-  const id = req.params.metrictId;
+  const id = req.params.metricId;
   if (mongoose.Types.ObjectId.isValid(id)) {
     Metrics.findOneAndUpdate(
       {
