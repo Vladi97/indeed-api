@@ -13,7 +13,7 @@ afterAll(async () => dbDisconnect());
 
 describe("User Model Test Suite", () => {
   test("should validate saving a new lead user successfully", async () => {
-    const validStudentUser = new User({
+    const validUser = new User({
       _id: fakeUserData._id,
       name: fakeUserData.name,
       lastName: fakeUserData.lastName,
@@ -21,20 +21,20 @@ describe("User Model Test Suite", () => {
       password: fakeUserData.password,
       role: fakeUserData.role,
     });
-    const savedStudentUser = await validStudentUser.save();
+    const savedUser = await validUser.save();
 
-    validateNotEmpty(savedStudentUser);
+    validateNotEmpty(savedUser);
 
-    validateStringEquality(savedStudentUser.role, fakeUserData.role);
-    validateStringEquality(savedStudentUser.username, fakeUserData.username);
-    validateStringEquality(savedStudentUser.password, fakeUserData.password);
-    validateStringEquality(savedStudentUser.firstName, fakeUserData.firstName);
-    validateStringEquality(savedStudentUser.lastName, fakeUserData.lastName);
+    validateStringEquality(savedUser.role, fakeUserData.role);
+    validateStringEquality(savedUser.username, fakeUserData.username);
+    validateStringEquality(savedUser.password, fakeUserData.password);
+    validateStringEquality(savedUser.firstName, fakeUserData.firstName);
+    validateStringEquality(savedUser.lastName, fakeUserData.lastName);
   });
 
   test("should validate MongoError duplicate error with code 11000", async () => {
     expect.assertions(3);
-    const validStudentUser = new User({
+    const validUser = new User({
       _id: fakeUserData._id,
       name: fakeUserData.name,
       lastName: fakeUserData.lastName,
@@ -44,7 +44,7 @@ describe("User Model Test Suite", () => {
     });
 
     try {
-      await validStudentUser.save();
+      await validUser.save();
     } catch (error) {
       const { name, code } = error;
       validateMongoDuplicationError(name, code);
