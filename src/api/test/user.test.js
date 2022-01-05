@@ -12,7 +12,7 @@ beforeAll(async () => dbConnect());
 afterAll(async () => dbDisconnect());
 
 describe("User Model Test Suite", () => {
-  test("should validate saving a new lead user successfully", async () => {
+  test("should validate saving a new user successfully", async () => {
     const validUser = new User({
       _id: fakeUserData._id,
       name: fakeUserData.name,
@@ -25,7 +25,7 @@ describe("User Model Test Suite", () => {
 
     validateNotEmpty(savedUser);
 
-    validateStringEquality(savedUser.role, fakeUserData.role);
+    validateStringEquality(savedUser.role.toString(), fakeUserData.role);
     validateStringEquality(savedUser.username, fakeUserData.username);
     validateStringEquality(savedUser.password, fakeUserData.password);
     validateStringEquality(savedUser.firstName, fakeUserData.firstName);
@@ -52,7 +52,7 @@ describe("User Model Test Suite", () => {
   });
 
   test("should validate fetching a user successfully", async () => {
-    await User.find({ _id: "5962a5f37bde228394da6f72" })
+    await User.find({ _id: "7e0a8056c9d89830f4911547" })
       .exec()
       .then((user) => {
         validateNotEmpty(user);
@@ -61,7 +61,7 @@ describe("User Model Test Suite", () => {
 
   test("should validate updating a user successfully", async () => {
     await User.updateOne(
-      { _id: "5962a5f37bde228394da6f72" },
+      { _id: "7e0a8056c9d89830f4911547" },
       { $set: { name: "Mario" } }
     )
       .exec()
@@ -70,11 +70,11 @@ describe("User Model Test Suite", () => {
       });
   });
 
-  test("should validate deleting a user successfully", async () => {
-    await User.deleteOne({ _id: "5962a5f37bde228394da6f72" })
+  /*test("should validate deleting a user successfully", async () => {
+    await User.deleteOne({ _id: "7e0a8056c9d89830f4911547" })
       .exec()
       .then((result) => {
         validateCountResult(result.deletedCount, 1);
       });
-  });
+  });*/
 });

@@ -1,14 +1,15 @@
 exports.fakeMetricData = {
-  _id: "5962a5f37bde228394da6f74",
+  _id: "7b0a7922c9d89830f4912021",
   workedTickets: 86,
   workedHours: 36.8,
   year: 2021,
   month: 1,
-  team: "Vladi's team",
+  team: "8b0a7922c9d89830f4911578",
   weekEndingDay: "08/01/2021",
   plannedUnits: 75,
   availableTime: 40,
   verifiedTickets: 70,
   rejectedTickets: 4,
-  user: "av_cmena",
+  maintainer: "7e0a8056c9d89830f4911547",
+  lead: "7e0a8056c9d89830f4911547",
 };

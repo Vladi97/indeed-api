@@ -53,7 +53,8 @@ exports.create_metric = (req, res, next) => {
     availableTime: req.body.availableTime,
     verifiedTickets: req.body.verifiedTickets,
     rejectedTickets: req.body.rejectedTickets,
-    user: req.body.user,
+    maintainer: req.body.maintainer,
+    lead: req.body.lead,
   });
   metric
     .save()
@@ -71,7 +72,8 @@ exports.create_metric = (req, res, next) => {
           availableTime: result.availableTime,
           verifiedTickets: result.verifiedTickets,
           rejectedTickets: result.rejectedTickets,
-          user: result.user,
+          maintainer: result.maintainer,
+          lead: result.lead,
         },
       });
     })

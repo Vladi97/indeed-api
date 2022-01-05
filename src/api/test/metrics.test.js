@@ -1,4 +1,4 @@
-const Metric = require("../models/metrics");
+const Metric = require("../models/metric");
 const { fakeMetricData } = require("../fixtures/fakeMetricsData");
 const {
   validateNotEmpty,
@@ -18,20 +18,24 @@ describe("Metrics Model Test Suite", () => {
       workedHours: fakeMetricData.workedHours,
       year: fakeMetricData.year,
       month: fakeMetricData.month,
-      team: fakeMetricData.team,
       weekEndingDay: fakeMetricData.weekEndingDay,
       plannedUnits: fakeMetricData.plannedUnits,
       availableTime: fakeMetricData.availableTime,
       verifiedTickets: fakeMetricData.verifiedTickets,
       rejectedTickets: fakeMetricData.rejectedTickets,
-      user: fakeMetricData.user,
+      team: fakeMetricData.team,
+      maintainer: fakeMetricData.maintainer,
+      lead: fakeMetricData.lead,
     });
     const savedMetric = await validMetric.save();
 
     validateNotEmpty(savedMetric);
 
-    validateStringEquality(savedMetric.team, fakeMetricData.team);
-    validateStringEquality(savedMetric.user, fakeMetricData.user);
+    validateStringEquality(savedMetric.team.toString(), fakeMetricData.team);
+    validateStringEquality(
+      savedMetric.maintainer.toString(),
+      fakeMetricData.maintainer
+    );
     validateStringEquality(
       savedMetric.verifiedTickets.toString(),
       fakeMetricData.verifiedTickets.toString()
@@ -47,7 +51,7 @@ describe("Metrics Model Test Suite", () => {
   });
 
   test("should validate fetching a metric successfully", async () => {
-    await Metric.find({ _id: "5962a5f37bde228394da6f74" })
+    await Metric.find({ _id: "7b0a7922c9d89830f4912021" })
       .exec()
       .then((metric) => {
         validateNotEmpty(metric);
@@ -56,7 +60,7 @@ describe("Metrics Model Test Suite", () => {
 
   test("should validate updating a metric successfully", async () => {
     await Metric.updateOne(
-      { _id: "5962a5f37bde228394da6f74" },
+      { _id: "7b0a7922c9d89830f4912021" },
       { $set: { workedHours: 40 } }
     )
       .exec()
@@ -66,7 +70,7 @@ describe("Metrics Model Test Suite", () => {
   });
 
   test("should validate deleting a metric successfully", async () => {
-    await Metric.deleteOne({ _id: "5962a5f37bde228394da6f74" })
+    await Metric.deleteOne({ _id: "7b0a7922c9d89830f4912021" })
       .exec()
       .then((result) => {
         validateCountResult(result.deletedCount, 1);

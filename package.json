@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "devStart": "nodemon server.js",
-    "test": "jest --runInBand --detectOpenHandles"
+    "test": "jest ./src/api/test/role.test.js ./src/api/test/team.test.js ./src/api/test/user.test.js ./src/api/test/metrics.test.js"
   },
   "jest": {
     "testEnvironment": "node"
