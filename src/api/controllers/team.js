@@ -30,7 +30,7 @@ exports.get_all = (req, res, next) => {
  * @param {*} req
  * @param {*} res
  * @param {*} next
- * Creates a group in the database if all the information is correct
+ * Creates a team in the database if all the information is correct
  */
 exports.create_metric = (req, res, next) => {
   const team = new Metrics({
@@ -56,7 +56,7 @@ exports.create_metric = (req, res, next) => {
  * @param {*} req
  * @param {*} res
  * @param {*} next
- * @returns a group if the Id belong to an object in the database
+ * @returns a team if the Id belong to an object in the database
  */
 exports.get_team = (req, res, next) => {
   const id = req.params.teamId;
@@ -79,7 +79,7 @@ exports.get_team = (req, res, next) => {
  * @param {*} req
  * @param {*} res
  * @param {*} next
- * If the information is valid then it will update the group
+ * If the information is valid then it will update the team
  */
 exports.update_team = (req, res, next) => {
   const id = req.params.teamId;
@@ -109,7 +109,7 @@ exports.update_team = (req, res, next) => {
  * @param {*} req
  * @param {*} res
  * @param {*} next
- * Delete a group if the id is valid
+ * Delete a team if the id is valid
  */
 exports.delete_team = (req, res, next) => {
   const id = req.params.teamId;

@@ -6,6 +6,8 @@ const db = require("./src/api/utils/db.js");
 
 const userRoutes = require("./src/api/routes/user");
 const metricsRoutes = require("./src/api/routes/metrics");
+const roleRoutes = require("./src/api/routes/role");
+const teamRoutes = require("./src/api/routes/team");
 
 db.connect();
 
@@ -31,6 +33,8 @@ app.use((req, res, next) => {
 
 app.use("/api/metrics", metricsRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/role", roleRoutes);
+app.use("/api/team", teamRoutes);
 
 app.use((re, res, next) => {
   const error = new Error("Not Found");

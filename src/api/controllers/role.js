@@ -1,4 +1,4 @@
-const Metrics = require("../models/metric");
+const Role = require("../models/role");
 const mongoose = require("mongoose");
 
 /**
@@ -8,24 +8,15 @@ const mongoose = require("mongoose");
  * @returns all the information in this collection
  */
 exports.get_all = (req, res, next) => {
-  Metrics.find()
+  Role.find()
     .exec()
     .then((docs) => {
       const response = {
         count: docs.length,
-        metrics: docs.map((doc) => {
+        role: docs.map((doc) => {
           return {
             _id: doc._id,
-            workedTickets: doc.workedTickets,
-            workedHours: doc.workedHours,
-            year: doc.year,
-            month: doc.month,
-            team: doc.team,
-            weekEndingDay: doc.weekEndingDay,
-            availableTime: doc.availableTime,
-            verifiedTickets: doc.verifiedTickets,
-            rejectedTickets: doc.rejectedTickets,
-            user: doc.user,
+            name: doc.name,
           };
         }),
       };
@@ -39,39 +30,21 @@ exports.get_all = (req, res, next) => {
  * @param {*} req
  * @param {*} res
  * @param {*} next
- * Creates a metric in the database if all the information is correct
+ * Creates a role in the database if all the information is correct
  */
-exports.create_metric = (req, res, next) => {
-  const metric = new Metrics({
+exports.create_role = (req, res, next) => {
+  const role = new Metrics({
     _id: new mongoose.Types.ObjectId(),
-    workedTickets: req.body.workedTickets,
-    workedHours: req.body.workedHours,
-    year: req.body.year,
-    month: req.body.month,
-    team: req.body.team,
-    weekEndingDay: req.body.weekEndingDay,
-    availableTime: req.body.availableTime,
-    verifiedTickets: req.body.verifiedTickets,
-    rejectedTickets: req.body.rejectedTickets,
-    user: req.body.user,
+    name: req.body.name,
   });
-  metric
+  role
     .save()
     .then((result) => {
       res.status(201).json({
-        message: "metric created",
-        createdDepartment: {
+        message: "role created",
+        createdRole: {
           _id: result._id,
-          workedTickets: result.workedTickets,
-          workedHours: result.workedHours,
-          year: result.year,
-          month: result.month,
-          team: result.team,
-          weekEndingDay: result.weekEndingDay,
-          availableTime: result.availableTime,
-          verifiedTickets: result.verifiedTickets,
-          rejectedTickets: result.rejectedTickets,
-          user: result.user,
+          name: result.name,
         },
       });
     })
@@ -83,16 +56,16 @@ exports.create_metric = (req, res, next) => {
  * @param {*} req
  * @param {*} res
  * @param {*} next
- * @returns a metric if the Id belong to an object in the database
+ * @returns a group if the Id belong to an object in the database
  */
-exports.get_metric = (req, res, next) => {
-  const id = req.params.metricId;
-  Metrics.findById(id)
+exports.get_role = (req, res, next) => {
+  const id = req.params.roleId;
+  Role.findById(id)
     .exec()
     .then((doc) => {
       if (doc) {
         res.status(200).json({
-          metric: doc.data,
+          role: doc.data,
         });
       } else {
         res.status(404).json({ message: "No valid entry for provided ID" });
@@ -106,12 +79,12 @@ exports.get_metric = (req, res, next) => {
  * @param {*} req
  * @param {*} res
  * @param {*} next
- * If the information is valid then it will update the metric
+ * If the information is valid then it will update the role
  */
-exports.update_metric = (req, res, next) => {
-  const id = req.params.metricId;
+exports.update_role = (req, res, next) => {
+  const id = req.params.roleId;
   if (mongoose.Types.ObjectId.isValid(id)) {
-    Metrics.findOneAndUpdate(
+    Role.findOneAndUpdate(
       {
         _id: id,
       },
@@ -136,11 +109,11 @@ exports.update_metric = (req, res, next) => {
  * @param {*} req
  * @param {*} res
  * @param {*} next
- * Delete a metric if the id is valid
+ * Delete a role if the id is valid
  */
-exports.delete_metric = (req, res, next) => {
-  const id = req.params.metricId;
-  Metrics.deleteOne({ _id: id })
+exports.delete_role = (req, res, next) => {
+  const id = req.params.roleId;
+  Role.deleteOne({ _id: id })
     .exec()
     .then((result) => {
       res.status(200).json(result);
@@ -156,7 +129,7 @@ exports.delete_metric = (req, res, next) => {
  * Deletes all the records from this collection
  */
 exports.delete_all_records = (req, res, next) => {
-  Metrics.deleteMany()
+  Role.deleteMany()
     .exec()
     .then((result) => {
       res.status(200).json(result);
