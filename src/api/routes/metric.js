@@ -2,18 +2,18 @@ const express = require("express");
 const router = express.Router();
 const checkAuth = require("../middlewares/check-auth");
 
-const metricsController = require("../controllers/metrics");
+const metricController = require("../controllers/metric");
 
-router.get("/", checkAuth, metricsController.get_all);
+router.get("/", checkAuth, metricController.get_all);
 
-router.post("/", checkAuth, metricsController.create_metric);
+router.post("/", checkAuth, metricController.create_metric);
 
-router.get("/:metricId", checkAuth, metricsController.get_metric);
+router.get("/:metricId", checkAuth, metricController.get_metric);
 
-router.patch("/:metricId", checkAuth, metricsController.update_metric);
+router.patch("/:metricId", checkAuth, metricController.update_metric);
 
-router.delete("/:metricId", checkAuth, metricsController.delete_metric);
+router.delete("/:metricId", checkAuth, metricController.delete_metric);
 
-router.delete("/deleteall", checkAuth, metricsController.delete_all_records);
+router.delete("/deleteall", checkAuth, metricController.delete_all_records);
 
 module.exports = router;

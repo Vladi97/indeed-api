@@ -6,7 +6,7 @@ const roleController = require("../controllers/role");
 
 router.get("/", checkAuth, roleController.get_all);
 
-router.post("/", checkAuth, roleController.create_metric);
+router.post("/", checkAuth, roleController.create_role);
 
 router.get("/:teamId", checkAuth, roleController.get_role);
 

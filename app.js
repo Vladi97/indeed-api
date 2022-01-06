@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const db = require("./src/api/utils/db.js");
 
 const userRoutes = require("./src/api/routes/user");
-const metricsRoutes = require("./src/api/routes/metrics");
+const metricsRoutes = require("./src/api/routes/metric");
 const roleRoutes = require("./src/api/routes/role");
 const teamRoutes = require("./src/api/routes/team");
 
@@ -31,7 +31,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/metrics", metricsRoutes);
+app.use("/api/metric", metricsRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/role", roleRoutes);
 app.use("/api/team", teamRoutes);

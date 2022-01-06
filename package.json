@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "devStart": "nodemon server.js",
-    "test": "jest ./src/api/test/role.test.js ./src/api/test/team.test.js ./src/api/test/user.test.js ./src/api/test/metrics.test.js"
+    "test": "jest role.test team.test user.test metrics.test."
   },
   "jest": {
     "testEnvironment": "node"
