@@ -20,4 +20,4 @@ const metricsSchema = mongoose.Schema({
   lead: { type: mongoose.Schema.Types.ObjectId, ref: "user", required: true },
 });
 
-module.exports = mongoose.model("metric", metricsSchema);
+module.exports = mongoose.model("metric", metricsSchema, "metric");

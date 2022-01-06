@@ -75,7 +75,11 @@ exports.user_signup = (req, res, next) => {
               .then((result) => {
                 res.status(201).json({
                   message: "User created",
-                  userCreated: result,
+                  userCreated: {
+                    name: result.name,
+                    lastName: result.lastName,
+                    userName: result.userName,
+                  },
                 });
               })
               .catch((err) => {
@@ -201,17 +205,17 @@ exports.user_login = (req, res, next) => {
               userName: user[0].userName,
               userRole: user[0].role,
             },
-            process.env.prod.JWT_KEY,
+            process.env.JWT_KEY,
             {
               expiresIn: "2h",
             }
           );
-          const refreshToken = randtoken.uid(256);
-          refreshTokens[refreshToken] = user[0].email;
+          // const refreshToken = randtoken.uid(256);
+          // refreshTokens[refreshToken] = user[0].email;
           return res.status(200).json({
             message: "Auth successful",
             token: token,
-            refreshToken: refreshToken,
+            // refreshToken: refreshToken,
             expiresIn: "3600",
           });
         }
